@@ -407,7 +407,6 @@ td.nowrap {
     color: white;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .stat-item {
         margin-bottom: 15px;
@@ -460,3 +459,39 @@ td.nowrap {
 .icon-gross { color: #06d6a0; }
 .icon-net { color: #ffd60a; }
 .icon-deductions { color: #ef476f; }
+
+.view-only-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.view-only-section h6 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.view-only-section small {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.view-only-section strong {
+    font-size: 18px;
+    color: var(--dark-color);
+    font-family: 'Courier New', monospace;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-label i {
+    color: var(--primary-color);
+    width: 16px;
+}

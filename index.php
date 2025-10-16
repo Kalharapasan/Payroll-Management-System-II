@@ -315,6 +315,10 @@ $total_pages = max(1, ceil($total_records / $per_page));
                 <input type="hidden" name="id" id="formId" value="0">
 
                 <div class="row g-3">
+                    <!-- Personal Information Section -->
+                    <div class="col-12">
+                        <h6 class="border-bottom pb-2 mb-3"><i class="fas fa-user-circle"></i> Personal Information</h6>
+                    </div>
                     <div class="col-md-6">
                         <label class="form-label"><i class="fas fa-user"></i> Name</label>
                         <input name="employee_name" id="employee_name" class="form-control" required>
@@ -336,6 +340,10 @@ $total_pages = max(1, ceil($total_records / $per_page));
                         <input name="pay_date" id="pay_date" class="form-control" type="date">
                     </div>
 
+                    <!-- Salary Information Section -->
+                    <div class="col-12 mt-3">
+                        <h6 class="border-bottom pb-2 mb-3"><i class="fas fa-hand-holding-usd"></i> Salary Components</h6>
+                    </div>
                     <div class="col-md-4">
                         <label class="form-label"><i class="fas fa-building"></i> Inner City</label>
                         <input name="inner_city" id="inner_city" class="form-control" type="number" step="0.01" placeholder="0.00">
@@ -349,6 +357,10 @@ $total_pages = max(1, ceil($total_records / $per_page));
                         <input name="overtime" id="overtime" class="form-control" type="number" step="0.01" placeholder="0.00">
                     </div>
 
+                    <!-- Employment Information Section -->
+                    <div class="col-12 mt-3">
+                        <h6 class="border-bottom pb-2 mb-3"><i class="fas fa-briefcase"></i> Employment Details</h6>
+                    </div>
                     <div class="col-md-6">
                         <label class="form-label"><i class="fas fa-briefcase"></i> Employer</label>
                         <input name="employer" id="employer" class="form-control">
@@ -371,6 +383,10 @@ $total_pages = max(1, ceil($total_records / $per_page));
                         <input name="ni_number" id="ni_number" class="form-control" placeholder="e.g., AB123456C">
                     </div>
 
+                    <!-- Tax & National Insurance Section -->
+                    <div class="col-12 mt-3">
+                        <h6 class="border-bottom pb-2 mb-3"><i class="fas fa-receipt"></i> Tax & NI Information</h6>
+                    </div>
                     <div class="col-md-4">
                         <label class="form-label"><i class="fas fa-file-alt"></i> Tax Code</label>
                         <input name="tax_code" id="tax_code" class="form-control">

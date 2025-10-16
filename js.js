@@ -48,6 +48,7 @@
                     }
                     document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-edit"></i> Edit Employee #' + row.id;
                     document.getElementById('modalSave').innerHTML = '<i class="fas fa-save"></i> Update Employee';
+                    document.querySelector('.view-only-section').style.display = 'none';
                     recalc();
                     bsModal.show();
                 });
@@ -65,12 +66,21 @@
                     document.getElementById('formId').value = row.id;
                     Array.from(frm.elements).forEach(i=>i.disabled = true);
                     document.getElementById('modalSave').style.display = 'none';
-                    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-eye"></i> View Employee #' + row.id;
+                    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-eye"></i> View Employee #' + row.id + ' - ' + (row.employee_name || 'Unknown');
+                    
+                    // Show calculated breakdown in view mode
+                    document.querySelector('.view-only-section').style.display = 'block';
+                    document.getElementById('view_taxable').textContent = '$' + parseFloat(row.taxable_pay || 0).toFixed(2);
+                    document.getElementById('view_pensionable').textContent = '$' + parseFloat(row.pensionable_pay || 0).toFixed(2);
+                    document.getElementById('view_student_loan').textContent = '$' + parseFloat(row.student_loan || 0).toFixed(2);
+                    document.getElementById('view_ni_payment').textContent = '$' + parseFloat(row.ni_payment || 0).toFixed(2);
+                    
                     recalc();
                     bsModal.show();
                     modalEl.addEventListener('hidden.bs.modal', function _reen(){
                         Array.from(frm.elements).forEach(i=>i.disabled = false);
                         document.getElementById('modalSave').style.display = '';
+                        document.querySelector('.view-only-section').style.display = 'none';
                         modalEl.removeEventListener('hidden.bs.modal', _reen);
                     });
                 });
