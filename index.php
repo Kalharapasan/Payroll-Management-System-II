@@ -13,17 +13,16 @@ try {
     exit;
 }
 
-// --- Utilities ---
 function calc_from_components($inner_city, $basic_salary, $overtime) {
     $inner_city = (float)$inner_city;
     $basic_salary = (float)$basic_salary;
     $overtime = (float)$overtime;
 
     $gross = $inner_city + $basic_salary + $overtime;
-    $taxable = ($gross * 9) / 100.0; // 9%
-    $pension = ($gross * 5.5) / 100.0; // 5.5%
-    $student = ($gross * 2.5) / 100.0; // 2.5%
-    $ni = ($gross * 2.3) / 100.0; // 2.3%
+    $taxable = ($gross * 9) / 100.0; 
+    $pension = ($gross * 5.5) / 100.0; 
+    $student = ($gross * 2.5) / 100.0; 
+    $ni = ($gross * 2.3) / 100.0; 
     $deductions = $taxable + $pension + $student + $ni;
     $net = $gross - $deductions;
 
@@ -37,6 +36,80 @@ function calc_from_components($inner_city, $basic_salary, $overtime) {
         'net_pay' => round($net, 2),
     ];
 }
+
+function s($v) { return htmlspecialchars((string)$v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
+
+$errors = [];
+$messages = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? '';
+
+    if ($action === 'add' || $action === 'update') {
+        $data = [];
+        $fields = [
+            'employee_name','address','postcode','gender','reference_no','employer','emp_address','tax_period','tax_code','pay_date',
+            'inner_city','basic_salary','overtime','tax_todate','pension_todate','student_ref','ni_code','ni_number','ref_note'
+        ];
+        foreach ($fields as $f) {
+            $data[$f] = $_POST[$f] ?? null;
+        }
+
+        if (empty(trim($data['employee_name'] ?? ''))) $errors[] = 'Employee name is required.';
+        if (!in_array($data['gender'], ['m','f','M','F'])) $data['gender'] = null;
+        $data['inner_city'] = str_replace(',', '', $data['inner_city'] ?: 0);
+        $data['basic_salary'] = str_replace(',', '', $data['basic_salary'] ?: 0);
+        $data['overtime'] = str_replace(',', '', $data['overtime'] ?: 0);
+
+        if (empty($errors)) {
+            $calc = calc_from_components($data['inner_city'], $data['basic_salary'], $data['overtime']);
+
+            try {
+                if ($action === 'add') {
+                    $sql = "INSERT INTO employees
+                        (employee_name,address,postcode,gender,reference_no,employer,emp_address,tax_period,tax_code,pay_date,
+                        inner_city,basic_salary,overtime,gross_pay,taxable_pay,pensionable_pay,student_loan,ni_payment,deduction,net_pay,
+                        tax_todate,pension_todate,student_ref,ni_code,ni_number,ref_note)
+                        VALUES
+                        (:employee_name,:address,:postcode,:gender,:reference_no,:employer,:emp_address,:tax_period,:tax_code,:pay_date,
+                        :inner_city,:basic_salary,:overtime,:gross_pay,:taxable_pay,:pensionable_pay,:student_loan,:ni_payment,:deduction,:net_pay,
+                        :tax_todate,:pension_todate,:student_ref,:ni_code,:ni_number,:ref_note)
+                    ";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array_merge($data, $calc));
+                    $messages[] = 'Employee added successfully.';
+                } else {
+                    $id = (int)($_POST['id'] ?? 0);
+                    if ($id <= 0) throw new Exception('Invalid employee id for update.');
+                    $sql = "UPDATE employees SET
+                        employee_name=:employee_name,address=:address,postcode=:postcode,gender=:gender,reference_no=:reference_no,employer=:employer,emp_address=:emp_address,tax_period=:tax_period,tax_code=:tax_code,pay_date=:pay_date,
+                        inner_city=:inner_city,basic_salary=:basic_salary,overtime=:overtime,gross_pay=:gross_pay,taxable_pay=:taxable_pay,pensionable_pay=:pensionable_pay,student_loan=:student_loan,ni_payment=:ni_payment,deduction=:deduction,net_pay=:net_pay,
+                        tax_todate=:tax_todate,pension_todate=:pension_todate,student_ref=:student_ref,ni_code=:ni_code,ni_number=:ni_number,ref_note=:ref_note
+                        WHERE id = :id
+                    ";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array_merge($data, $calc, ['id' => $id]));
+                    $messages[] = 'Employee updated successfully.';
+                }
+            } catch (Exception $e) {
+                $errors[] = 'Database error: ' . $e->getMessage();
+            }
+        }
+    } elseif ($action === 'delete') {
+        $id = (int)($_POST['id'] ?? 0);
+        if ($id > 0) {
+            try {
+                $stmt = $pdo->prepare('DELETE FROM employees WHERE id = :id');
+                $stmt->execute(['id' => $id]);
+                $messages[] = 'Employee deleted.';
+            } catch (Exception $e) {
+                $errors[] = 'Delete failed: ' . $e->getMessage();
+            }
+        } else {
+            $errors[] = 'Invalid id for deletion.';
+        }
+    }
+}
+
 
 
 ?>
