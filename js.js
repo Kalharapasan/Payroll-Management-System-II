@@ -29,8 +29,8 @@
                 frm.reset();
                 document.getElementById('formAction').value = 'add';
                 document.getElementById('formId').value = 0;
-                document.getElementById('modalTitle').textContent = 'Add Employee';
-                document.getElementById('modalSave').textContent = 'Add Employee';
+                document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-plus"></i> Add Employee';
+                document.getElementById('modalSave').innerHTML = '<i class="fas fa-save"></i> Add Employee';
                 recalc();
                 bsModal.show();
             });
@@ -45,8 +45,8 @@
                         const el = document.getElementById(k);
                         if (el) el.value = row[k] ?? '';
                     }
-                    document.getElementById('modalTitle').textContent = 'Edit Employee #' + row.id;
-                    document.getElementById('modalSave').textContent = 'Update Employee';
+                    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-edit"></i> Edit Employee #' + row.id;
+                    document.getElementById('modalSave').innerHTML = '<i class="fas fa-save"></i> Update Employee';
                     recalc();
                     bsModal.show();
                 });
@@ -64,7 +64,7 @@
                     document.getElementById('formId').value = row.id;
                     Array.from(frm.elements).forEach(i=>i.disabled = true);
                     document.getElementById('modalSave').style.display = 'none';
-                    document.getElementById('modalTitle').textContent = 'View Employee #' + row.id;
+                    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-eye"></i> View Employee #' + row.id;
                     recalc();
                     bsModal.show();
                     modalEl.addEventListener('hidden.bs.modal', function _reen(){
