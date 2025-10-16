@@ -98,8 +98,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt->execute(array_merge($data, $calc, ['id' => $id]));
                     $messages[] = 'Employee updated successfully.';
                 }
+            } catch (PDOException $e) {
+                // Handle duplicate entry error specifically
+                if ($e->getCode() == 23000) {
+                    if (strpos($e->getMessage(), 'reference_no') !== false) {
+                        $errors[] = 'The reference number "' . htmlspecialchars($data['reference_no']) . '" is already in use. Please use a unique reference number or leave it empty.';
+                    } else {
+                        $errors[] = 'Duplicate entry error: ' . $e->getMessage();
+                    }
+                } else {
+                    $errors[] = 'Database error: ' . $e->getMessage();
+                }
             } catch (Exception $e) {
-                $errors[] = 'Database error: ' . $e->getMessage();
+                $errors[] = 'Error: ' . $e->getMessage();
             }
         }
     } elseif ($action === 'delete') {

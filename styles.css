@@ -1,4 +1,4 @@
-/* Payroll Management System - Custom Styles */
+
 
 :root {
     --primary-color: #4361ee;
@@ -29,7 +29,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Header Styles */
+
 .page-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
@@ -51,7 +51,7 @@ body {
     font-size: 32px;
 }
 
-/* Button Styles */
+
 .btn {
     border-radius: 8px;
     padding: 8px 16px;
@@ -80,7 +80,6 @@ body {
     font-size: 14px;
 }
 
-/* Stats Card */
 .stats-card {
     background: white;
     border-radius: 12px;
@@ -128,7 +127,7 @@ body {
     font-family: 'Courier New', monospace;
 }
 
-/* Search Bar */
+
 .search-wrapper {
     display: flex;
     gap: 10px;
@@ -152,7 +151,7 @@ body {
     padding: 10px 24px;
 }
 
-/* Table Styles */
+
 .table-card {
     background: white;
     border-radius: 12px;
@@ -202,7 +201,7 @@ td.nowrap {
     white-space: nowrap;
 }
 
-/* Action Buttons */
+
 .action-buttons {
     display: flex;
     gap: 5px;
@@ -247,7 +246,7 @@ td.nowrap {
     border-color: #bb2d3b;
 }
 
-/* Pagination */
+
 .pagination {
     margin-top: 20px;
     justify-content: center;
@@ -271,7 +270,7 @@ td.nowrap {
     transform: translateY(-2px);
 }
 
-/* Modal Styles */
+
 .modal-dialog {
     max-height: 90vh;
 }
@@ -326,7 +325,7 @@ td.nowrap {
     flex-shrink: 0;
 }
 
-/* Form Styles */
+
 .form-label {
     font-weight: 600;
     color: var(--dark-color);
@@ -346,7 +345,7 @@ td.nowrap {
     box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
 }
 
-/* Calculated Values Display */
+
 .calc-display {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 10px;
@@ -384,7 +383,7 @@ td.nowrap {
     font-family: 'Courier New', monospace;
 }
 
-/* Alert Styles */
+
 .alert {
     border-radius: 10px;
     border: none;
@@ -440,7 +439,7 @@ td.nowrap {
     }
 }
 
-/* Loading Animation */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -456,7 +455,7 @@ td.nowrap {
     animation: fadeIn 0.5s ease-out;
 }
 
-/* Icon Colors */
+
 .icon-employees { color: #4361ee; }
 .icon-gross { color: #06d6a0; }
 .icon-net { color: #ffd60a; }

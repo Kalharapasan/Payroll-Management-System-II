@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS employees (
     address VARCHAR(255),
     postcode VARCHAR(20),
     gender ENUM('m', 'f'),
-    reference_no VARCHAR(50) UNIQUE,
+    reference_no VARCHAR(50) DEFAULT NULL,
     employer VARCHAR(255),
     emp_address VARCHAR(255),
     tax_period VARCHAR(10),
@@ -26,10 +26,11 @@ CREATE TABLE IF NOT EXISTS employees (
     net_pay DECIMAL(10,2) DEFAULT 0,
     tax_todate DECIMAL(10,2) DEFAULT 0,
     pension_todate DECIMAL(10,2) DEFAULT 0,
-    student_ref VARCHAR(50),
+    student_ref VARCHAR(50) DEFAULT NULL,
     ni_code VARCHAR(20),
-    ni_number VARCHAR(50),
+    ni_number VARCHAR(50) DEFAULT NULL,
     ref_note TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_reference_no (reference_no)
     );
