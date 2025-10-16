@@ -122,6 +122,10 @@ if ($search !== '') {
     $params[':q'] = "%$search%";
 }
 
+$totalsStmt = $pdo->prepare("SELECT COUNT(*) as total_count, IFNULL(SUM(gross_pay),0) as total_gross, IFNULL(SUM(net_pay),0) as total_net, IFNULL(SUM(deduction),0) as total_ded FROM employees $where");
+$totalsStmt->execute($params);
+$totals = $totalsStmt->fetch();
+
 ?>
 
 <!DOCTYPE html>
