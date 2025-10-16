@@ -134,7 +134,11 @@ $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
 $stmt->execute();
 $rows = $stmt->fetchAll();
 
-
+$countSql = "SELECT COUNT(*) FROM employees $where";
+$countStmt = $pdo->prepare($countSql);
+$countStmt->execute($params);
+$total_records = (int)$countStmt->fetchColumn();
+$total_pages = max(1, ceil($total_records / $per_page));
 
 ?>
 
