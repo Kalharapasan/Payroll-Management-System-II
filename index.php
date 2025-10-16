@@ -376,24 +376,49 @@ $total_pages = max(1, ceil($total_records / $per_page));
                 document.getElementById('modalSave').textContent = 'Add Employee';
                 recalc();
                 bsModal.show();
-        });
-        
-        document.querySelectorAll('.btnEdit').forEach(btn=>{
-            btn.addEventListener('click', (e)=>{
-                const row = JSON.parse(btn.getAttribute('data-row'));
-                document.getElementById('formAction').value = 'update';
-                document.getElementById('formId').value = row.id;
-                for (const k in row) {
-                    const el = document.getElementById(k);
-                    if (el) el.value = row[k] ?? '';
-                }
-                document.getElementById('modalTitle').textContent = 'Edit Employee #' + row.id;
-                document.getElementById('modalSave').textContent = 'Update Employee';
-                recalc();
-                bsModal.show();
             });
-        });
 
+
+            document.querySelectorAll('.btnEdit').forEach(btn=>{
+                btn.addEventListener('click', (e)=>{
+                    const row = JSON.parse(btn.getAttribute('data-row'));
+                    document.getElementById('formAction').value = 'update';
+                    document.getElementById('formId').value = row.id;
+                    for (const k in row) {
+                        const el = document.getElementById(k);
+                        if (el) el.value = row[k] ?? '';
+                    }
+                    document.getElementById('modalTitle').textContent = 'Edit Employee #' + row.id;
+                    document.getElementById('modalSave').textContent = 'Update Employee';
+                    recalc();
+                    bsModal.show();
+                });
+            });
+
+            document.querySelectorAll('.btnView').forEach(btn=>{
+                btn.addEventListener('click', ()=>{
+                    const row = JSON.parse(btn.getAttribute('data-row'));
+                    frm.reset();
+                    for (const k in row) {
+                        const el = document.getElementById(k);
+                        if (el) el.value = row[k] ?? '';
+                    }
+                    document.getElementById('formAction').value = 'update';
+                    document.getElementById('formId').value = row.id;
+                    Array.from(frm.elements).forEach(i=>i.disabled = true);
+                    document.getElementById('modalSave').style.display = 'none';
+                    document.getElementById('modalTitle').textContent = 'View Employee #' + row.id;
+                    recalc();
+                    bsModal.show();
+                    modalEl.addEventListener('hidden.bs.modal', function _reen(){
+                        Array.from(frm.elements).forEach(i=>i.disabled = false);
+                        document.getElementById('modalSave').style.display = '';
+                        modalEl.removeEventListener('hidden.bs.modal', _reen);
+                    });
+                });
+            });
+
+        })();
 
     </script>
 
