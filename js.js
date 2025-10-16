@@ -31,6 +31,7 @@
                 document.getElementById('formId').value = 0;
                 document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-plus"></i> Add Employee';
                 document.getElementById('modalSave').innerHTML = '<i class="fas fa-save"></i> Add Employee';
+                document.querySelector('.view-only-section').style.display = 'none';
                 recalc();
                 bsModal.show();
             });

@@ -349,12 +349,56 @@ $total_pages = max(1, ceil($total_records / $per_page));
                         <input name="overtime" id="overtime" class="form-control" type="number" step="0.01" placeholder="0.00">
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label"><i class="fas fa-briefcase"></i> Employer</label>
                         <input name="employer" id="employer" class="form-control">
                     </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-map-marker-alt"></i> Employer Address</label>
+                        <input name="emp_address" id="emp_address" class="form-control">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label"><i class="fas fa-home"></i> Employee Address</label>
+                        <input name="address" id="address" class="form-control" placeholder="Street address">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-mail-bulk"></i> Postcode</label>
+                        <input name="postcode" id="postcode" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-id-card-alt"></i> NI Number</label>
+                        <input name="ni_number" id="ni_number" class="form-control" placeholder="e.g., AB123456C">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-file-alt"></i> Tax Code</label>
+                        <input name="tax_code" id="tax_code" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-calendar-week"></i> Tax Period</label>
+                        <input name="tax_period" id="tax_period" class="form-control" placeholder="e.g., 2025-26">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-code"></i> NI Code</label>
+                        <input name="ni_code" id="ni_code" class="form-control" placeholder="e.g., A">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-receipt"></i> Tax to Date</label>
+                        <input name="tax_todate" id="tax_todate" class="form-control" type="number" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-piggy-bank"></i> Pension to Date</label>
+                        <input name="pension_todate" id="pension_todate" class="form-control" type="number" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-graduation-cap"></i> Student Reference</label>
+                        <input name="student_ref" id="student_ref" class="form-control">
+                    </div>
 
                     <div class="col-12">
+                        <hr>
                         <div class="calc-display">
                             <small class="text-muted d-block mb-2"><i class="fas fa-calculator"></i> <strong>Calculated Values (Live):</strong></small>
                             <div class="row g-3">
@@ -383,6 +427,30 @@ $total_pages = max(1, ceil($total_records / $per_page));
                     <div class="col-12">
                         <label class="form-label"><i class="fas fa-sticky-note"></i> Reference Note</label>
                         <textarea name="ref_note" id="ref_note" class="form-control" rows="3" placeholder="Add any notes or comments..."></textarea>
+                    </div>
+
+                    <!-- Read-only calculated fields display (shown in View mode) -->
+                    <div class="col-12 view-only-section" style="display:none;">
+                        <hr>
+                        <h6 class="mb-3"><i class="fas fa-info-circle"></i> Calculated Breakdown</h6>
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <small class="text-muted d-block">Taxable Pay</small>
+                                <strong class="d-block" id="view_taxable">-</strong>
+                            </div>
+                            <div class="col-md-3">
+                                <small class="text-muted d-block">Pensionable Pay</small>
+                                <strong class="d-block" id="view_pensionable">-</strong>
+                            </div>
+                            <div class="col-md-3">
+                                <small class="text-muted d-block">Student Loan</small>
+                                <strong class="d-block" id="view_student_loan">-</strong>
+                            </div>
+                            <div class="col-md-3">
+                                <small class="text-muted d-block">NI Payment</small>
+                                <strong class="d-block" id="view_ni_payment">-</strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
