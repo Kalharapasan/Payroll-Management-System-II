@@ -145,11 +145,38 @@ $total_pages = max(1, ceil($total_records / $per_page));
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Payroll — Clean Rebuilt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 18px; }
+        .card-stats { gap: .75rem; display:flex; }
+        .monos { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        td.nowrap { white-space:nowrap; }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Payroll — Clean Rebuilt</h2>
+            <div>
+                <button class="btn btn-primary" id="btnNew">+ Add Employee</button>
+            </div>
+        </div>
+        
+        <?php if (!empty($messages)): ?>
+        <?php foreach ($messages as $m): ?>
+            <div class="alert alert-success"><?= s($m) ?></div>
+        <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if (!empty($errors)): ?>
+            <?php foreach ($errors as $e): ?>
+                <div class="alert alert-danger"><?= s($e) ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        
+
 </body>
 </html>
