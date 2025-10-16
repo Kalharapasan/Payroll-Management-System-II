@@ -253,6 +253,18 @@ $total_pages = max(1, ceil($total_records / $per_page));
             </div>
         </div>
 
+        <nav class="mt-3" aria-label="pagination">
+            <ul class="pagination">
+                <?php for ($p = 1; $p <= $total_pages; $p++): ?>
+                    <li class="page-item <?= $p === $page ? 'active' : '' ?>">
+                        <a class="page-link" href="?q=<?= urlencode($search) ?>&page=<?= $p ?>"><?= $p ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
+
+    </div>
+
 
 
 
