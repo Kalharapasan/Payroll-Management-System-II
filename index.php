@@ -377,6 +377,23 @@ $total_pages = max(1, ceil($total_records / $per_page));
                 recalc();
                 bsModal.show();
         });
+        
+        document.querySelectorAll('.btnEdit').forEach(btn=>{
+            btn.addEventListener('click', (e)=>{
+                const row = JSON.parse(btn.getAttribute('data-row'));
+                document.getElementById('formAction').value = 'update';
+                document.getElementById('formId').value = row.id;
+                for (const k in row) {
+                    const el = document.getElementById(k);
+                    if (el) el.value = row[k] ?? '';
+                }
+                document.getElementById('modalTitle').textContent = 'Edit Employee #' + row.id;
+                document.getElementById('modalSave').textContent = 'Update Employee';
+                recalc();
+                bsModal.show();
+            });
+        });
+
 
     </script>
 
