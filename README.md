@@ -286,7 +286,7 @@ Contributions are welcome! Feel free to:
 
 ## 📄 License
 
-MIT License - Free to use for personal and commercial projects
+License -[License](./LICENSE.md): Proprietary – Permission Required
 
 ## 👨‍💻 Author
 
