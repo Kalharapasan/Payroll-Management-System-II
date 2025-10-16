@@ -177,6 +177,35 @@ $total_pages = max(1, ceil($total_records / $per_page));
         <?php endif; ?>
 
         
+        
+        <div class="card mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div class="card-stats">
+                    <div>
+                        <small class="text-muted">Total Employees</small>
+                        <div class="h4"><?= (int)$totals['total_count'] ?></div>
+                    </div>
+                    <div class="ms-4">
+                        <small class="text-muted">Total Gross</small>
+                        <div class="h5 monos"><?= number_format((float)$totals['total_gross'],2) ?></div>
+                    </div>
+                    <div class="ms-4">
+                        <small class="text-muted">Total Net</small>
+                        <div class="h5 monos"><?= number_format((float)$totals['total_net'],2) ?></div>
+                    </div>
+                    <div class="ms-4">
+                        <small class="text-muted">Total Deductions</small>
+                        <div class="h5 monos"><?= number_format((float)$totals['total_ded'],2) ?></div>
+                    </div>
+                </div>
+                <form class="d-flex" method="get" style="gap:.5rem;">
+                    <input name="q" value="<?= s($search) ?>" class="form-control" placeholder="Search name, ref, postcode, NI">
+                    <button class="btn btn-outline-secondary">Search</button>
+                </form>
+            </div>
+        </div>
+
+
 
 </body>
 </html>
