@@ -1,6 +1,7 @@
-"# 💼 Payroll Management System II
+" 💼 Payroll Management System II
 
 A comprehensive, modern payroll management system with beautiful UI, automatic calculations, and complete employee data management.
+<img width="1366" height="619" alt="Capture" src="https://github.com/user-attachments/assets/2d433e3d-875a-4cfe-8718-34448ba3823c" />
 
 ## ✨ Features
 
