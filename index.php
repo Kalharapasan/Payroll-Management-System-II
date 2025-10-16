@@ -205,6 +205,55 @@ $total_pages = max(1, ceil($total_records / $per_page));
             </div>
         </div>
 
+        
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Reference</th>
+                        <th>Gross</th>
+                        <th>Net</th>
+                        <th>Deductions</th>
+                        <th>Pay Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php if (empty($rows)): ?>
+                        <tr><td colspan="8" class="text-center py-4">No records found.</td></tr>
+                    <?php else: ?>
+                        <?php foreach ($rows as $r): ?>
+                            <tr>
+                                <td class="nowrap"><?= (int)$r['id'] ?></td>
+                                <td><?= s($r['employee_name']) ?></td>
+                                <td><?= s($r['reference_no']) ?></td>
+                                <td class="monos"><?= number_format((float)$r['gross_pay'],2) ?></td>
+                                <td class="monos"><?= number_format((float)$r['net_pay'],2) ?></td>
+                                <td class="monos"><?= number_format((float)$r['deduction'],2) ?></td>
+                                <td><?= s($r['pay_date']) ?></td>
+                                <td class="nowrap">
+                                    <button class="btn btn-sm btn-info btnView" data-row='<?= json_encode($r, JSON_HEX_APOS|JSON_HEX_QUOT) ?>'>View</button>
+                                    <button class="btn btn-sm btn-warning btnEdit" data-row='<?= json_encode($r, JSON_HEX_APOS|JSON_HEX_QUOT) ?>'>Edit</button>
+                                    <form method="post" style="display:inline" onsubmit="return confirm('Delete this employee?');">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+
+
 
 
 </body>
