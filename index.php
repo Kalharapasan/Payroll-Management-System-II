@@ -126,6 +126,16 @@ $totalsStmt = $pdo->prepare("SELECT COUNT(*) as total_count, IFNULL(SUM(gross_pa
 $totalsStmt->execute($params);
 $totals = $totalsStmt->fetch();
 
+$listSql = "SELECT * FROM employees $where ORDER BY id DESC LIMIT :limit OFFSET :offset";
+$stmt = $pdo->prepare($listSql);
+foreach ($params as $k=>$v) $stmt->bindValue($k, $v);
+$stmt->bindValue(':limit', (int)$per_page, PDO::PARAM_INT);
+$stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+$stmt->execute();
+$rows = $stmt->fetchAll();
+
+
+
 ?>
 
 <!DOCTYPE html>
