@@ -265,6 +265,79 @@ $total_pages = max(1, ceil($total_records / $per_page));
 
     </div>
 
+    <div class="modal fade" id="modalRow" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+            <form id="frmRow" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="action" id="formAction" value="add">
+                <input type="hidden" name="id" id="formId" value="0">
+
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Name</label>
+                        <input name="employee_name" id="employee_name" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Reference No</label>
+                        <input name="reference_no" id="reference_no" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Gender</label>
+                        <select name="gender" id="gender" class="form-select"><option value="">-</option><option value="m">Male</option><option value="f">Female</option></select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Pay Date</label>
+                        <input name="pay_date" id="pay_date" class="form-control" type="date">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Inner City</label>
+                        <input name="inner_city" id="inner_city" class="form-control" type="number" step="0.01">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Basic Salary</label>
+                        <input name="basic_salary" id="basic_salary" class="form-control" type="number" step="0.01">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Overtime</label>
+                        <input name="overtime" id="overtime" class="form-control" type="number" step="0.01">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Employer</label>
+                        <input name="employer" id="employer" class="form-control">
+                    </div>
+
+                    <div class="col-12 mt-2">
+                        <small class="text-muted">Calculated values (live):</small>
+                        <div class="d-flex gap-3 mt-1">
+                            <div class="border p-2 rounded">Gross: <span id="calc_gross">0.00</span></div>
+                            <div class="border p-2 rounded">Deductions: <span id="calc_ded">0.00</span></div>
+                            <div class="border p-2 rounded">Net: <span id="calc_net">0.00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-2">
+                        <label class="form-label">Reference Note</label>
+                        <textarea name="ref_note" id="ref_note" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="modalSave">Save</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
 
 
 
