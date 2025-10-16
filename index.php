@@ -110,7 +110,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$search = trim($_GET['q'] ?? '');
+$page = max(1, (int)($_GET['page'] ?? 1));
+$per_page = 10; 
+$offset = ($page - 1) * $per_page;
 
+$params = [];
+$where = '';
+if ($search !== '') {
+    $where = "WHERE employee_name LIKE :q OR reference_no LIKE :q OR postcode LIKE :q OR ni_number LIKE :q";
+    $params[':q'] = "%$search%";
+}
 
 ?>
 
